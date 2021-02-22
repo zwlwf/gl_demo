@@ -9,13 +9,13 @@ float alpha = 0.0f;
 GLuint prog, vao;
 
 void keyFun(GLFWwindow* window , int key , int scancode ,int action , int mode ) {
-	if( action = GLFW_PRESS ) {
+	if( action == GLFW_PRESS ) {
 		if(key==GLFW_KEY_Q) {
 			glfwSetWindowShouldClose(window, true);
 		} else {
 			glClear(GL_COLOR_BUFFER_BIT);
 			glUseProgram(prog);
-			alpha+=2.4f;
+			alpha+=2.4f/180.0f*3.14159f;
 			glUniform1f( glGetUniformLocation(prog,"alpha"), alpha);
 			glBindVertexArray(vao);
 			glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -24,6 +24,7 @@ void keyFun(GLFWwindow* window , int key , int scancode ,int action , int mode )
 			glfwSwapBuffers(window);
 		}
 	}
+	printf("Calling keyFun once\n");
 }
 
 char *loadText(const char* fname ) {
